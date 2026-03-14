@@ -1,0 +1,70 @@
+"use client";
+import { motion } from "framer-motion";
+import Magnet from "./ui/Magnet";
+
+export default function ContactForm() {
+  return (
+    <section className="relative py-32 px-4 border-b border-white/10 bg-black">
+      <div className="absolute inset-0 bg-grid opacity-10" />
+      
+      <div className="max-w-3xl mx-auto relative z-10 border border-white/10 p-8 md:p-16 bg-white/[0.02]">
+        
+        {/* Horizontal Accent lines in the form box */}
+        <div className="absolute top-0 left-0 w-full h-1 flex">
+           <div className="bg-accent-pink flex-1" />
+           <div className="accent-color-2 flex-1" />
+           <div className="accent-color-3 flex-1" />
+           <div className="accent-color-4 flex-1" />
+        </div>
+
+        <h2 className="text-4xl md:text-5xl font-power uppercase text-center mb-16 tracking-widest text-[#f5f5f5]">
+          GET IN TOUCH
+        </h2>
+
+        <form className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-2">
+              <label className="text-[10px] font-mono uppercase tracking-widest text-white/40">Your Name</label>
+              <input type="text" className="w-full bg-transparent border border-white/10 p-4 focus:border-accent-yellow outline-none transition-colors" placeholder="John Doe" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] font-mono uppercase tracking-widest text-white/40">Email Address</label>
+              <input type="email" className="w-full bg-transparent border border-white/10 p-4 focus:border-accent-cyan outline-none transition-colors" placeholder="john@tours.com" />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="text-[10px] font-mono uppercase tracking-widest text-white/40">Subject</label>
+            <input type="text" className="w-full bg-transparent border border-white/10 p-4 focus:border-accent-pink outline-none transition-colors" placeholder="Project Inquiry" />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] font-mono uppercase tracking-widest text-white/40">Message</label>
+            <textarea className="w-full bg-transparent border border-white/10 p-4 h-40 focus:border-accent-green outline-none transition-colors" placeholder="Tell us about your tour..." />
+          </div>
+
+          <button className="w-full py-6 bg-white text-black font-power uppercase text-xl hover:bg-accent-yellow transition-all duration-300 transform hover:scale-[1.02]">
+            Send Message
+          </button>
+        </form>
+
+        <Magnet 
+          src="/magnets/vinyl_v2.png" 
+          alt="Contact Vinyl" 
+          initialX="-10%" 
+          initialY="10%" 
+          size={160} 
+          rotation={-20} 
+        />
+        <Magnet 
+          src="/magnets/patch_v2.png" 
+          alt="Contact Patch" 
+          initialX="95%" 
+          initialY="70%" 
+          size={180} 
+          rotation={15} 
+        />
+      </div>
+    </section>
+  );
+}
