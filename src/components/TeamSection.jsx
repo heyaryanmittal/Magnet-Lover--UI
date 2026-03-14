@@ -28,7 +28,7 @@ const TeamCard = ({ name, role, photo, rotate, delay = 0 }) => {
       }}
       viewport={{ once: false, margin: "-50px" }}
       transition={{ 
-        duration: 1.2, 
+        duration: 1.8, 
         delay: delay, 
         type: "spring", 
         stiffness: 80, 

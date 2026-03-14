@@ -1,6 +1,7 @@
 import { Inter, Syne, Outfit, Space_Mono, Permanent_Marker, Bricolage_Grotesque, Fraunces } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,7 +53,9 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} ${syne.variable} ${outfit.variable} ${spaceMono.variable} ${permanentMarker.variable} ${bricolage.variable} ${fraunces.variable} font-sans antialiased text-white selection:bg-accent-yellow selection:text-black`}>
         <CustomCursor />
         <div className="bg-grain" />
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

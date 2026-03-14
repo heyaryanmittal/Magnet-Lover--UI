@@ -6,10 +6,28 @@ export default function ProblemSection() {
   return (
     <section className="relative w-full bg-transparent border-b border-[var(--grid-line-strong)]">
       
-      {/* Central Vertical Splitting Lines (3 lines creating 4 columns) shown in screenshot */}
-      <div className="absolute w-[1px] h-full left-1/4 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-      <div className="absolute w-[1px] h-full left-1/2 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-      <div className="absolute w-[1px] h-full left-[75%] top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
+      {/* Central Vertical Splitting Lines (3 lines creating 4 columns) - Animates on scroll */}
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-1/4 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, delay: 0.1, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-1/2 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, delay: 0.2, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-[75%] top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
 
       {/* Main Content Area */}
       <div className="w-full relative z-10 lg:px-0">
@@ -29,15 +47,21 @@ export default function ProblemSection() {
           <motion.h2 
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.4 }}
             className="text-7xl sm:text-9xl md:text-[160px] leading-[0.8] tracking-[-0.05em] uppercase text-center text-[#e8dbcc] font-power"
           >
             WHY<br />MAGNETS?
           </motion.h2>
 
-          <div className="mt-20 mb-16 border border-[var(--grid-line-strong)] px-10 py-4 bg-transparent">
-             <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.3em] font-bold text-[#e8dbcc]">THE SITUATION</p>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.4, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-20 mb-16 border border-[var(--grid-line-strong)] px-10 py-4 bg-transparent"
+          >
+             <p className="font-script text-xl uppercase tracking-[0.1em] text-white">THE SITUATION</p>
+          </motion.div>
 
           <motion.p 
             initial={{ opacity: 0 }}
@@ -76,21 +100,39 @@ export default function ProblemSection() {
       {/* Narrative Paragraphs below highlight */}
       <div className="w-full relative z-10 px-6 max-w-[1400px] mx-auto">
         <div className="flex flex-col items-center pt-24 pb-32">
-          <p className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center mb-10">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4 }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center mb-10"
+          >
             <span className="font-serif italic text-accent-pink">Traditional</span> items like tees and hoodies are <span className="font-unique uppercase text-accent-yellow">bulky</span>, pricey and easy to pass over, while cheaper options end up <span className="font-script text-white inline-block transform -rotate-2">forgotten in a drawer.</span>
-          </p>
-          <p className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center">
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center"
+          >
             Magnets are <span className="font-unique uppercase text-accent-green neon-green">affordable</span>, memorable and a <span className="font-serif italic text-white underline decoration-accent-cyan underline-offset-8">daily reminder</span> of the show, all while taking up less space and delivering <span className="font-script text-accent-pink text-5xl">better margins</span> for artists.
-          </p>
+          </motion.p>
         </div>
       </div>
 
       {/* Edge-to-Edge 4-Color Bottom Divider separated by the grid lines */}
-      <div className="absolute bottom-0 left-0 w-full h-1.5 grid grid-cols-4 bg-[var(--grid-line-strong)] gap-[1px]">
-         <div className="bg-accent-pink h-full" />
-         <div className="bg-accent-yellow h-full" />
-         <div className="bg-accent-green h-full" />
-         <div className="bg-accent-cyan h-full" />
+      <div className="absolute bottom-0 left-0 w-full h-1.5 grid grid-cols-4 bg-[var(--grid-line-strong)] gap-[1px] overflow-hidden">
+         {['pink', 'yellow', 'green', 'cyan'].map((color, idx) => (
+           <motion.div 
+             key={color}
+             initial={{ scaleX: 0 }}
+             whileInView={{ scaleX: 1 }}
+             transition={{ duration: 1.6, delay: idx * 0.1, ease: "circOut" }}
+             viewport={{ once: true, amount: 0.15 }}
+             className={`bg-accent-${color} h-full origin-left`} 
+           />
+         ))}
       </div>
 
     </section>

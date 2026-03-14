@@ -5,10 +5,28 @@ export default function TouringReality() {
   return (
     <section className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)]">
       
-      {/* Central Vertical Splitting Lines (3 lines creating 4 columns) */}
-      <div className="absolute w-[1px] h-full left-1/4 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-      <div className="absolute w-[1px] h-full left-1/2 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-      <div className="absolute w-[1px] h-full left-[75%] top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
+      {/* Central Vertical Splitting Lines (3 lines creating 4 columns) - Animates on scroll */}
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-1/4 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, delay: 0.1, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-1/2 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, delay: 0.2, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="absolute w-[1px] h-full left-[75%] top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top" 
+      />
 
       {/* Main Content Area */}
       <div className="w-full relative z-10">
@@ -33,36 +51,66 @@ export default function TouringReality() {
            </div>
         </div>
 
-        {/* 2. BPM Bar */}
-        <div className="w-full py-5 border-b border-[var(--grid-line-strong)] flex justify-center items-center bg-transparent backdrop-blur-sm z-20 relative">
+        {/* 2. BPM Bar - Animates sliding in */}
+        <motion.div 
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1.6, ease: "circOut" }}
+          viewport={{ once: true, amount: 0.15 }}
+          className="w-full py-5 border-b border-[var(--grid-line-strong)] flex justify-center items-center bg-transparent backdrop-blur-sm z-20 relative origin-center"
+        >
             <span className="font-power text-[10px] md:text-[11px] tracking-[0.4em] uppercase text-[#F5F5F3]">
               70 — 160 <span className="text-accent-yellow italic mx-2 font-black">//</span> BPM
             </span>
-        </div>
+        </motion.div>
 
         {/* 3. Text Section */}
         <div className="w-full flex justify-center pt-24 pb-32 px-4 relative">
            
            <div className="flex flex-col items-center max-w-4xl w-full">
-              {/* THE TOURING REALITY Box */}
-              <div className="border border-white/20 px-10 py-3 bg-[#120D14]/50 backdrop-blur-sm mb-20 relative">
+              {/* THE TOURING REALITY Box - Animates sliding up */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="border border-white/20 px-10 py-3 bg-[#120D14]/50 backdrop-blur-sm mb-20 relative"
+              >
                  <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-[#e8dbcc]/80">
                    THE TOURING REALITY
                  </p>
-              </div>
+              </motion.div>
 
-              {/* Headings and paragraphs */}
-              <h2 className="text-4xl md:text-5xl lg:text-[68px] font-power mb-16 text-center leading-[1.05] tracking-[-0.05em] text-[#F5F5F3] uppercase">
+              {/* Headings and paragraphs - Staggered reveal */}
+              <motion.h2 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="text-4xl md:text-5xl lg:text-[68px] font-power mb-16 text-center leading-[1.05] tracking-[-0.05em] text-[#F5F5F3] uppercase"
+              >
                 Touring artists have limited space.
-              </h2>
+              </motion.h2>
               
-              <p className="text-2xl lg:text-4xl text-white text-center leading-[1.4] mb-12 max-w-[850px]">
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.2 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="text-2xl lg:text-4xl text-white text-center leading-[1.4] mb-12 max-w-[850px]"
+              >
                 Merch needs to <span className="font-unique uppercase text-accent-yellow">compete</span> with production gear and <span className="font-serif italic text-accent-cyan neon-cyan">wardrobe</span>, fitting into flight cases, bus bays and luggage which can get <span className="font-script text-white text-4xl inline-block transform rotate-2">expensive.</span>
-              </p>
+              </motion.p>
 
-              <p className="text-2xl lg:text-4xl text-white text-center leading-[1.4] max-w-[850px]">
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.3 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="text-2xl lg:text-4xl text-white text-center leading-[1.4] max-w-[850px]"
+              >
                 Because magnets take up <span className="font-serif italic text-accent-green">almost no space</span>, they deliver far <span className="font-unique uppercase text-accent-yellow font-bold">greater</span> <span className="font-script text-accent-pink text-5xl transform -rotate-3 inline-block">profit density</span> than standard merch.
-              </p>
+              </motion.p>
            </div>
         </div>
 

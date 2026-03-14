@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { Globe } from "lucide-react";
 
 // Top Left Interlocking Rings Icon
@@ -120,18 +121,30 @@ export default function StatBar() {
          </div>
       </div>
 
-      {/* 2. Top Vertical Color Dropper */}
+      {/* 2. Top Vertical Color Dropper - Animates descending on scroll */}
       <div className="relative h-20 md:h-32 w-full flex justify-center border-b border-[var(--grid-line-strong)]">
-         <div className="w-[48px] h-full flex z-10">
-            <div className="flex-1 bg-accent-pink" />
-            <div className="flex-1 bg-accent-yellow" />
-            <div className="flex-1 bg-accent-green" />
-            <div className="flex-1 bg-accent-cyan" />
+         <div className="w-[48px] h-full flex z-10 overflow-hidden">
+            {['pink', 'yellow', 'green', 'cyan'].map((color, idx) => (
+              <motion.div 
+                key={color}
+                initial={{ y: "-100%" }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 1.4, delay: idx * 0.1, ease: "circOut" }}
+                viewport={{ once: true, amount: 0.15 }}
+                className={`flex-1 bg-accent-${color} h-full`} 
+              />
+            ))}
          </div>
       </div>
 
       {/* 3. Structural Information Cards (Animated Marquee) */}
-      <div className="w-full border-b border-[var(--grid-line-strong)] relative z-20 overflow-hidden bg-transparent">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4 }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="w-full border-b border-[var(--grid-line-strong)] relative z-20 overflow-hidden bg-transparent"
+      >
         
         {/* The Marquee */}
         <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused]" style={{ animationDuration: '25s' }}>
@@ -142,37 +155,75 @@ export default function StatBar() {
                   key={i} 
                   className="h-48 md:h-64 w-[100vw] md:w-[33.333333vw] p-8 lg:p-12 border-r border-[var(--grid-line-strong)] flex flex-col justify-center shrink-0 bg-[#0a070c]"
                 >
-                  <div className="flex gap-6 items-center justify-center w-full whitespace-normal">
-                     <div className="flex-shrink-0">
+                      <motion.div 
+                        whileHover={{ scale: 1.2, rotate: 5 }}
+                        className="flex-shrink-0"
+                      >
                         <stat.icon />
-                     </div>
-                     <div className="flex flex-col">
-                       <p className="text-[10px] md:text-xs font-mono tracking-[0.25em] font-bold uppercase text-white/70 mb-2">{stat.label}</p>
-                       <h4 className="text-3xl md:text-5xl font-power uppercase leading-[0.85] whitespace-pre-line text-[#F5F5F3]">
-                         {stat.value}
-                       </h4>
-                     </div>
-                  </div>
+                      </motion.div>
+                      <div className="flex flex-col">
+                        <motion.p 
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.9, delay: 0.1 }}
+                          viewport={{ once: true, amount: 0.15 }}
+                          className="text-[10px] md:text-xs font-mono tracking-[0.25em] font-bold uppercase text-white/70 mb-2"
+                        >
+                          {stat.label}
+                        </motion.p>
+                        <motion.h4 
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.9, delay: 0.2 }}
+                          viewport={{ once: true, amount: 0.15 }}
+                          className="text-3xl md:text-5xl font-power uppercase leading-[0.85] whitespace-pre-line text-[#F5F5F3]"
+                        >
+                          {stat.value}
+                        </motion.h4>
+                      </div>
                 </div>
               ))}
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* 4. Splitting Concentric Accent Lines */}
-      {/* 4 colors split nicely: Pink & Yellow curve left, Green & Cyan curve right */}
+      {/* 4. Splitting Concentric Accent Lines - Animates expanding outwards */}
       <div className="relative h-24 md:h-40 w-full flex justify-center border-b border-[var(--grid-line-strong)] overflow-hidden">
         <div className="relative w-0 h-full"> 
           {/* Pink (Outer Left) */}
-          <div className="absolute top-0 right-[12px] w-[50vw] h-[84px] md:h-[116px] border-b-[12px] border-r-[12px] border-accent-pink rounded-br-[36px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1.6, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 right-[12px] w-[50vw] h-[84px] md:h-[116px] border-b-[12px] border-r-[12px] border-accent-pink rounded-br-[36px] origin-right" 
+          />
           {/* Yellow (Inner Left) */}
-          <div className="absolute top-0 right-[0px] w-[50vw] h-[72px] md:h-[104px] border-b-[12px] border-r-[12px] border-accent-yellow rounded-br-[24px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 right-[0px] w-[50vw] h-[72px] md:h-[104px] border-b-[12px] border-r-[12px] border-accent-yellow rounded-br-[24px] origin-right" 
+          />
           
           {/* Green (Inner Right) */}
-          <div className="absolute top-0 left-[0px] w-[50vw] h-[72px] md:h-[104px] border-b-[12px] border-l-[12px] border-accent-green rounded-bl-[24px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 left-[0px] w-[50vw] h-[72px] md:h-[104px] border-b-[12px] border-l-[12px] border-accent-green rounded-bl-[24px] origin-left" 
+          />
           {/* Cyan (Outer Right) */}
-          <div className="absolute top-0 left-[12px] w-[50vw] h-[84px] md:h-[116px] border-b-[12px] border-l-[12px] border-accent-cyan rounded-bl-[36px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1.6, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 left-[12px] w-[50vw] h-[84px] md:h-[116px] border-b-[12px] border-l-[12px] border-accent-cyan rounded-bl-[36px] origin-left" 
+          />
         </div>
       </div>
 
@@ -188,7 +239,7 @@ export default function StatBar() {
             {[...Array(24)].map((_, i) => (
                <div 
                  key={i} 
-                 className="w-[1px] bg-white rounded-full bg-white/70 transition-all duration-500" 
+                 className="w-[1px] bg-white rounded-full transition-all duration-500" 
                  style={{ height: waveHeights[i] ? `${waveHeights[i]}%` : '40%' }} 
                />
             ))}

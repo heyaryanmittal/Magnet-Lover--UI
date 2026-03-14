@@ -65,23 +65,45 @@ export default function Benefits() {
   return (
     <section className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)]">
       
-      {/* Structural side gutters */}
-      <div className="hidden lg:block absolute left-0 top-0 w-20 xl:w-32 h-full border-r border-[var(--grid-line-strong)] z-0" />
-      <div className="hidden lg:block absolute right-0 top-0 w-20 xl:w-32 h-full border-l border-[var(--grid-line-strong)] z-0" />
+      {/* Structural side gutters - Animates on scroll */}
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="hidden lg:block absolute left-0 top-0 w-20 xl:w-32 h-full border-r border-[var(--grid-line-strong)] z-0 origin-top" 
+      />
+      <motion.div 
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 1.8, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="hidden lg:block absolute right-0 top-0 w-20 xl:w-32 h-full border-l border-[var(--grid-line-strong)] z-0 origin-top" 
+      />
 
       {/* Main Content Area */}
       <div className="w-full relative z-10 px-6 lg:px-0">
       
-        {/* Vertical Grid Lines */}
-        <div className="absolute w-[1px] h-full left-1/4 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-        <div className="absolute w-[1px] h-full left-1/2 top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
-        <div className="absolute w-[1px] h-full left-[75%] top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block" />
+        {/* Vertical Grid Lines - Animates on scroll */}
+        {[0.25, 0.5, 0.75].map((pos, idx) => (
+          <motion.div 
+            key={idx}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 1.6, delay: idx * 0.1, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute w-[1px] h-full top-0 bg-[var(--grid-line-strong)] z-0 hidden md:block origin-top"
+            style={{ left: `${pos * 100}%` }}
+          />
+        ))}
         
         <div className="flex flex-col items-center pt-24 pb-16 relative z-10">
           
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.0 }}
+            viewport={{ once: true, amount: 0.15 }}
             className="flex items-center gap-4 mb-16 opacity-70"
           >
              <span className="font-mono text-xs tracking-[0.2em] font-medium text-[#7a7c86]">ML</span>
@@ -92,13 +114,21 @@ export default function Benefits() {
           <motion.h2 
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.4 }}
+            viewport={{ once: true, amount: 0.15 }}
             className="text-6xl sm:text-8xl md:text-[140px] leading-[0.8] tracking-[-0.03em] uppercase text-center text-[#e8dbcc] font-power mb-20"
           >
             PRACTICAL<br />BENEFITS
           </motion.h2>
 
-          {/* Toggle Buttons */}
-          <div className="flex bg-[#0d0a0f] p-1.5 rounded-full border border-white/10 gap-1">
+          {/* Toggle Buttons - Animated */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="flex bg-[#0d0a0f] p-1.5 rounded-full border border-white/10 gap-1"
+          >
              <button
                onClick={() => { setActiveTab("artists"); setExpandedIndex(0); }}
                className={`px-8 md:px-12 py-3 rounded-full font-bold uppercase text-[11px] md:text-xs tracking-[0.15em] transition-all duration-300 ${
@@ -115,7 +145,7 @@ export default function Benefits() {
              >
                FOR FANS
              </button>
-          </div>
+          </motion.div>
         </div>
         
         <div className="w-full border-t border-b border-[var(--grid-line-strong)] mt-16 relative z-20 grid grid-cols-1 md:grid-cols-2">
@@ -128,7 +158,7 @@ export default function Benefits() {
                    initial={{ opacity: 0, x: -20 }}
                    animate={{ opacity: 1, x: 0 }}
                    exit={{ opacity: 0, x: 20 }}
-                   transition={{ duration: 0.5 }}
+                   transition={{ duration: 0.9 }}
                  >
                    <span className={`font-script text-5xl mb-12 block transform -rotate-6 ${activeTab === 'artists' ? 'neon-pink' : 'neon-yellow'}`}>
                      {active.accent}

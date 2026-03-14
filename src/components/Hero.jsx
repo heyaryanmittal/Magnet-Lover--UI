@@ -34,15 +34,21 @@ export default function Hero() {
         </header>
       </div>
 
-      {/* 2. Structured Accent Track */}
-      <div className="relative h-10 md:h-12 border-b border-[var(--grid-line-strong)] flex">
+      {/* 2. Structured Accent Track - Animates expanding */}
+      <div className="relative h-10 md:h-12 border-b border-[var(--grid-line-strong)] flex overflow-hidden">
         <div className="w-20 md:w-32 border-r border-[var(--grid-line-strong)]" />
         <div className="flex-1 flex justify-center items-center">
            <div className="w-24 md:w-32 h-full flex">
-              <div className="accent-color-1 flex-1" />
-              <div className="accent-color-2 flex-1" />
-              <div className="accent-color-3 flex-1" />
-              <div className="accent-color-4 flex-1" />
+              {['pink', 'yellow', 'green', 'cyan'].map((color, idx) => (
+                <motion.div 
+                  key={color}
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  transition={{ duration: 1.4, delay: idx * 0.1, ease: "circOut" }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  className={`bg-accent-${color} flex-1 origin-top`} 
+                />
+              ))}
            </div>
         </div>
         <div className="w-20 md:w-32 border-l border-[var(--grid-line-strong)]" />
@@ -51,16 +57,18 @@ export default function Hero() {
       {/* 3. Hero Body Content */}
       <div className="py-24 md:py-32 flex flex-col items-center justify-center relative">
         <motion.div 
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.4 }}
+          viewport={{ once: true, amount: 0.15 }}
           className="border border-white/20 rounded-full pr-8 py-1.5 flex items-center gap-4 bg-[#0a0a0a]/60 backdrop-blur-xl mb-8 z-20 overflow-hidden"
         >
           <div className="w-14 h-14 bg-black border-r border-white/10 flex items-center justify-center relative group">
              {/* Rotating Nebula CD */}
              <motion.div 
-               animate={{ rotate: 360 }}
-               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-               className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-900 via-indigo-900 to-black relative overflow-hidden flex items-center justify-center p-2 shadow-[0_0_15px_rgba(100,100,255,0.3)]"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-900 via-indigo-900 to-black relative overflow-hidden flex items-center justify-center p-2 shadow-[0_0_15px_rgba(100,100,255,0.3)]"
              >
                 <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-center" />
                 <div className="w-full h-full rounded-full border border-white/20 relative">
@@ -71,17 +79,39 @@ export default function Hero() {
           <span className="text-[10px] md:text-[11px] font-mono uppercase tracking-[0.4em] text-white/70 font-bold">Music Industry Merch</span>
         </motion.div>
 
-        <h1 className="text-huge font-power text-center leading-[0.75] uppercase text-[var(--text-warm)] relative z-10 transition-transform duration-700 hover:scale-[1.02]">
+        <motion.h1 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="text-huge font-power text-center leading-[0.75] uppercase text-[var(--text-warm)] relative z-10 transition-transform duration-700 hover:scale-[1.02]"
+        >
           MAGNET<br />LOVER
-        </h1>
+        </motion.h1>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 z-20 max-w-xl">
-           <span className="text-3xl md:text-5xl font-script text-white transform -rotate-3">Merch</span>
-           <span className="text-2xl md:text-4xl font-serif italic text-accent-pink px-2">that</span>
-           <span className="text-4xl md:text-6xl font-unique uppercase text-accent-yellow tracking-tighter">makes</span>
-           <span className="text-2xl md:text-5xl font-script text-white transform rotate-2">more</span>
-           <span className="text-4xl md:text-6xl font-power text-accent-cyan tracking-tight">SENSE</span>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, delay: 0.8 }}
+          className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 z-20 max-w-xl"
+        >
+           {[
+             { text: "Merch", class: "text-3xl md:text-5xl font-script text-white transform -rotate-3" },
+             { text: "that", class: "text-2xl md:text-4xl font-serif italic text-accent-pink px-2" },
+             { text: "makes", class: "text-4xl md:text-6xl font-unique uppercase text-accent-yellow tracking-tighter" },
+             { text: "more", class: "text-2xl md:text-5xl font-script text-white transform rotate-2" },
+             { text: "SENSE", class: "text-4xl md:text-6xl font-power text-accent-cyan tracking-tight" }
+           ].map((word, i) => (
+             <motion.span 
+               key={i}
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 1.0, delay: 1 + (i * 0.1), ease: "circOut" }}
+               className={word.class}
+             >
+               {word.text}
+             </motion.span>
+           ))}
+        </motion.div>
 
         {/* Magnets */}
         <Magnet src="/magnets/vinyl_v2.png" alt="Vinyl" initialX="15%" initialY="20%" size={250} rotation={-14} />

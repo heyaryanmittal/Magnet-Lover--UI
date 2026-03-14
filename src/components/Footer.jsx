@@ -96,24 +96,54 @@ export default function Footer() {
   return (
     <footer className="relative w-full bg-[#0d0a0f] border-t border-[var(--grid-line-strong)] mt-20 overflow-hidden">
       
-      {/* 1. Converging Accent Lines at Top */}
+      {/* 1. Converging Accent Lines at Top - Animates drawing in */}
       <div className="relative h-20 md:h-32 w-full flex justify-center overflow-hidden">
         <div className="relative w-0 h-full"> 
           {/* Pink/Yellow (Left Entry) */}
-          <div className="absolute top-0 right-[12px] w-[50vw] h-[84px] md:h-[116px] border-t-[12px] border-r-[12px] border-accent-pink rounded-tr-[36px]" />
-          <div className="absolute top-0 right-[0px] w-[50vw] h-[72px] md:h-[104px] border-t-[12px] border-r-[12px] border-accent-yellow rounded-tr-[24px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1.6, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 right-[12px] w-[50vw] h-[84px] md:h-[116px] border-t-[12px] border-r-[12px] border-accent-pink rounded-tr-[36px] origin-right" 
+          />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 right-[0px] w-[50vw] h-[72px] md:h-[104px] border-t-[12px] border-r-[12px] border-accent-yellow rounded-tr-[24px] origin-right" 
+          />
           
           {/* Green/Cyan (Right Entry) */}
-          <div className="absolute top-0 left-[0px] w-[50vw] h-[72px] md:h-[104px] border-t-[12px] border-l-[12px] border-accent-green rounded-tl-[24px]" />
-          <div className="absolute top-0 left-[12px] w-[50vw] h-[84px] md:h-[116px] border-t-[12px] border-l-[12px] border-accent-cyan rounded-tl-[36px]" />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 left-[0px] w-[50vw] h-[72px] md:h-[104px] border-t-[12px] border-l-[12px] border-accent-green rounded-tl-[24px] origin-left" 
+          />
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1.6, ease: "circOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            className="absolute top-0 left-[12px] w-[50vw] h-[84px] md:h-[116px] border-t-[12px] border-l-[12px] border-accent-cyan rounded-tl-[36px] origin-left" 
+          />
         </div>
       </div>
 
       {/* 2. Brand Identity Column */}
       <div className="flex flex-col items-center">
-        <h2 className="text-[12vw] md:text-[10vw] font-power uppercase text-center leading-[0.8] tracking-tighter text-[#F5F5F3] mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6 }}
+          viewport={{ once: true, amount: 0.15 }}
+          className="text-[12vw] md:text-[10vw] font-power uppercase text-center leading-[0.8] tracking-tighter text-[#F5F5F3] mb-12"
+        >
           MAGNET LOVER
-        </h2>
+        </motion.h2>
 
         <div className="w-full border-y border-[var(--grid-line-strong)] py-6 flex items-center justify-center gap-3 group cursor-pointer hover:bg-white/[0.02] transition-colors">
           <Instagram className="w-4 h-4 text-accent-yellow" />
@@ -121,8 +151,16 @@ export default function Footer() {
         </div>
 
         {/* Central vertical strip leading to main box */}
-        <div className="h-20 md:h-28">
-           <ColorStrip />
+        <div className="h-20 md:h-28 overflow-hidden">
+           <motion.div
+             initial={{ scaleY: 0 }}
+             whileInView={{ scaleY: 1 }}
+             transition={{ duration: 1.4 }}
+             viewport={{ once: true, amount: 0.15 }}
+             className="h-full origin-top"
+           >
+             <ColorStrip />
+           </motion.div>
         </div>
       </div>
 

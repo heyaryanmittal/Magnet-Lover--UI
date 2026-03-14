@@ -6,14 +6,26 @@ export default function ContactForm() {
   return (
     <section className="relative py-32 px-4 border-b border-white/10 bg-transparent">
       
-      <div className="max-w-3xl mx-auto relative z-10 border border-white/10 p-8 md:p-16 bg-white/[0.02]">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4, ease: "circOut" }}
+        viewport={{ once: true, amount: 0.15 }}
+        className="max-w-3xl mx-auto relative z-10 border border-white/10 p-8 md:p-16 bg-white/[0.02]"
+      >
         
-        {/* Horizontal Accent lines in the form box */}
-        <div className="absolute top-0 left-0 w-full h-1 flex">
-           <div className="bg-accent-pink flex-1" />
-           <div className="accent-color-2 flex-1" />
-           <div className="accent-color-3 flex-1" />
-           <div className="accent-color-4 flex-1" />
+        {/* Horizontal Accent lines in the form box - Animates on scroll */}
+        <div className="absolute top-0 left-0 w-full h-1 flex overflow-hidden">
+           {['pink', 'yellow', 'green', 'cyan'].map((color, idx) => (
+             <motion.div 
+               key={color}
+               initial={{ scaleX: 0 }}
+               whileInView={{ scaleX: 1 }}
+               transition={{ duration: 1.6, delay: idx * 0.1, ease: "circOut" }}
+               viewport={{ once: true, amount: 0.15 }}
+               className={`bg-accent-${color} flex-1 origin-left`} 
+             />
+           ))}
         </div>
 
         <h2 className="text-4xl md:text-5xl font-power uppercase text-center mb-16 tracking-tight text-[#f5f5f5]">
@@ -63,7 +75,7 @@ export default function ContactForm() {
           size={180} 
           rotation={15} 
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

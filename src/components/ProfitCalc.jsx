@@ -81,19 +81,37 @@ export default function ProfitCalc() {
          <span className="font-mono text-xs tracking-[0.4em] text-white/40 font-bold uppercase">ML — 003</span>
       </div>
 
-      {/* 2. Main Heading and Subtitle */}
+      {/* 2. Main Heading and Subtitle - Staggered Reveal */}
       <div className="px-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
-         <h2 className="text-6xl md:text-[100px] font-power leading-[0.85] tracking-tight uppercase text-[#F5F5F3]">
+         <motion.h2 
+           initial={{ opacity: 0, y: 50 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+           viewport={{ once: true, amount: 0.15 }}
+           className="text-6xl md:text-[100px] font-power leading-[0.85] tracking-tight uppercase text-[#F5F5F3]"
+         >
            PROFIT<br />DENSITY<br />CALCULATOR
-         </h2>
+         </motion.h2>
 
          <div className="max-w-[420px] pb-4">
-            <span className="font-script text-white text-[42px] block mb-2 transform -rotate-3">
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -3 }}
+              transition={{ duration: 1.4, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
+              className="font-script text-white text-[42px] block mb-2 origin-left"
+            >
                Space vs. Profit
-            </span>
-            <p className="text-xl md:text-2xl text-white leading-relaxed">
+            </motion.span>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.6, delay: 0.4 }}
+              viewport={{ once: true, amount: 0.15 }}
+              className="text-xl md:text-2xl text-white leading-relaxed"
+            >
                <span className="font-serif italic text-accent-green">See how much</span> more you could be <span className="font-unique uppercase text-accent-pink neon-pink">making</span> compared to traditional merch items.<span className="text-accent-yellow font-script text-3xl">*</span>
-            </p>
+            </motion.p>
          </div>
       </div>
 
