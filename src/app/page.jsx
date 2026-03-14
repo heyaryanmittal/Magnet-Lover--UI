@@ -9,17 +9,10 @@ import Benefits from "@/components/Benefits";
 import Mission from "@/components/Mission";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black">
-      {/* Background Grain Overlay */}
-      <div className="bg-grain" />
-      
-      {/* Interactive Cursor */}
-      <CustomCursor />
-
       {/* Main Content Layout with Grid Columns */}
       <div className="main-grid">
         <div className="side-col hidden lg:block" />

@@ -1,5 +1,6 @@
 import { Inter, Lilita_One, Permanent_Marker } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} ${lilita.variable} ${permanentMarker.variable} font-sans antialiased text-white selection:bg-accent-yellow selection:text-black`}>
+        <CustomCursor />
         <div className="bg-grain" />
         {children}
       </body>

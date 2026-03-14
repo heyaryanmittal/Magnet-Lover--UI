@@ -19,28 +19,43 @@ export default function Hero() {
     <section className="relative w-full border-b border-white/10">
       
       {/* Top Header Layout */}
-      <div>
-        {accentStrip}
-        <header className="max-w-7xl mx-auto border border-white/10 mt-0 flex items-stretch">
-          <div className="p-6 border-r border-white/10 flex items-center justify-center group cursor-pointer hover:bg-white/5">
-            <div className="bg-accent-pink p-2 rounded-sm transition-transform group-hover:scale-110">
-              <Heart className="w-6 h-6 text-black fill-current" />
+      <div className="relative border-b border-white/10">
+        <header className="w-full flex items-stretch h-20 md:h-24">
+          {/* Logo Box */}
+          <div className="w-20 md:w-32 border-r border-white/10 flex items-center justify-center group cursor-pointer hover:bg-white/[0.03] transition-colors">
+            <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(255,75,130,0.5)]">
+                <path d="M50 85 C30 70 10 50 10 30 C10 15 25 10 40 20 C45 25 50 30 50 30 C50 30 55 25 60 20 C75 10 90 15 90 30 C90 50 70 70 50 85" fill="#ff4b82" />
+                <path d="M35 35 V45 C35 53 42 60 50 60 C58 60 65 53 65 45 V35 H58 V45 C58 49 54 53 50 53 C46 53 42 49 42 45 V35 H35" fill="#F5F5F3" />
+              </svg>
             </div>
           </div>
           
-          <nav className="flex-1 flex justify-center items-center gap-12 font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
+          {/* Main Nav */}
+          <nav className="flex-1 flex justify-center items-center gap-6 md:gap-12 font-mono text-[10px] md:text-xs font-medium uppercase tracking-[0.3em] text-[#F5F5F3]/80">
             <a href="#" className="hover:text-white transition-colors">Why Magnets</a>
-            <div className="w-1 h-1 bg-accent-green rounded-full pulse-accent" />
-            <a href="#" className="text-white">Calculator</a>
-            <div className="w-1 h-1 bg-accent-yellow rounded-full pulse-accent" />
+            <div className="w-1 h-1 bg-accent-green rounded-full shadow-[0_0_8px_var(--accent-green)]" />
+            <a href="#" className="text-white hover:text-white transition-colors">Calculator</a>
+            <div className="w-1 h-1 bg-accent-yellow rounded-full shadow-[0_0_8px_var(--accent-yellow)]" />
             <a href="#" className="hover:text-white transition-colors">About Us</a>
           </nav>
 
-          <div className="p-6 border-l border-white/10 flex items-center justify-center hover:bg-white/5 cursor-pointer">
-            <Mail className="w-6 h-6" />
+          {/* Contact Box */}
+          <div className="w-20 md:w-32 border-l border-white/10 flex items-center justify-center hover:bg-white/[0.03] transition-colors cursor-pointer group">
+            <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-8 md:h-8 text-[#F5F5F3]/80 group-hover:text-white transition-colors" fill="none" stroke="currentColor" strokeWidth="1">
+              <path d="M3 8L12 13L21 8V17H3V8Z" />
+              <rect x="3" y="5" width="18" height="14" rx="1" />
+            </svg>
+          </div>
+
+          {/* Bottom Centered Accent Strip */}
+          <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 w-32 md:w-48 h-2 md:h-3 flex">
+            <div className="accent-color-1 flex-1 h-full" />
+            <div className="accent-color-2 flex-1 h-full" />
+            <div className="accent-color-3 flex-1 h-full" />
+            <div className="accent-color-4 flex-1 h-full" />
           </div>
         </header>
-        {accentStrip}
       </div>
 
       {/* Hero Body */}
