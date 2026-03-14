@@ -19,16 +19,11 @@ export default function Home() {
         
         <div className="content-col">
           <Hero />
-          <Marquee text="SCROLL // " speed={40} />
           <StatBar />
           
           <ProblemSection />
-          <TouringReality />
-          
-          <Marquee text="MEMORIES // MUSIC // MERCH // " speed={25} />
-          
-          <ProfitCalc />
           <Benefits />
+          <TouringReality />
           
           <Mission />
           <ContactForm />

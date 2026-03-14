@@ -4,8 +4,7 @@ import Magnet from "./ui/Magnet";
 
 export default function ContactForm() {
   return (
-    <section className="relative py-32 px-4 border-b border-white/10 bg-black">
-      <div className="absolute inset-0 bg-grid opacity-10" />
+    <section className="relative py-32 px-4 border-b border-white/10 bg-transparent">
       
       <div className="max-w-3xl mx-auto relative z-10 border border-white/10 p-8 md:p-16 bg-white/[0.02]">
         

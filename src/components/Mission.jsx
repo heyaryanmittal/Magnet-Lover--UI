@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Mission() {
   return (
-    <section className="relative py-40 border-b border-white/10 bg-black">
-      <div className="absolute inset-0 bg-grid opacity-10" />
+    <section className="relative py-40 border-b border-white/10 bg-transparent">
       <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
          <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-white/40 mb-16">About Us</p>
          

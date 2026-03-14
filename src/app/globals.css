@@ -3,7 +3,9 @@
 :root {
   --background: #000000;
   --foreground: #f5f5f5;
-  --grid-line: rgba(255, 255, 255, 0.08); /* Fainter grid */
+  --grid-line: rgba(255, 255, 255, 0.05); /* Fainter, sharper grid */
+  --grid-line-strong: rgba(255, 255, 255, 0.15); /* Stronger edges */
+  --text-warm: #EDE8E0; /* Warm off-white from image */
   --accent-pink: #ff4b82;
   --accent-yellow: #ffc300;
   --accent-green: #00b167;
@@ -21,11 +23,14 @@
   --color-accent-blue: var(--accent-blue);
 }
 
+* {
+  cursor: none !important;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* GRAIN EFFECT - Persistent */
@@ -47,21 +52,19 @@ body {
   grid-template-columns: 1fr minmax(0, 1200px) 1fr;
   width: 100%;
   min-height: 100vh;
-  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 50px 50px; /* Matched to site */
+  background-size: 25px 25px; /* Reduced for smaller boxes */
 }
 
 .content-col {
   grid-column: 2;
-  border-left: 1px solid var(--grid-line);
-  border-right: 1px solid var(--grid-line);
+  border-left: 1px solid var(--grid-line-strong);
+  border-right: 1px solid var(--grid-line-strong);
   position: relative;
-  background-color: #120D14; /* User specified center color */
-  /* Re-apply grid on top of the specific center color if needed */
-  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-color: #120D14; /* User requested color */
+  background-image: none;
 }
 
 .side-col {
@@ -150,6 +153,6 @@ html {
 .accent-color-4 { background-color: var(--accent-blue); }
 
 .bg-box {
-  background-color: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
