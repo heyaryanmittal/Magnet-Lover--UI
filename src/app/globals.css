@@ -10,9 +10,20 @@
   --accent-yellow: #ffc300;
   --accent-green: #00b167;
   --accent-blue: #00a4e4;
-  --font-power: var(--font-lilita);
-  --font-mono: var(--font-inter); /* Using inter for mono look */
+  --font-power: var(--font-syne);
+  --font-body: var(--font-outfit);
+  --font-mono: var(--font-space-mono);
+  --font-unique: var(--font-bricolage);
+  --font-serif: var(--font-fraunces);
 }
+
+.font-unique { font-family: var(--font-unique), sans-serif; }
+.font-serif { font-family: var(--font-serif), serif; }
+
+.neon-pink { text-shadow: 0 0 10px rgba(255, 75, 130, 0.4); color: var(--accent-pink); }
+.neon-yellow { text-shadow: 0 0 10px rgba(255, 195, 0, 0.4); color: var(--accent-yellow); }
+.neon-green { text-shadow: 0 0 10px rgba(0, 177, 103, 0.4); color: var(--accent-green); }
+.neon-cyan { text-shadow: 0 0 10px rgba(0, 164, 228, 0.4); color: var(--accent-blue); }
 
 @theme {
   --color-background: var(--background);
@@ -31,6 +42,7 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 /* GRAIN EFFECT - Persistent */
@@ -99,12 +111,14 @@ body {
 .text-huge {
   font-size: clamp(3rem, 15vw, 13rem);
   line-height: 0.8;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  font-family: var(--font-power);
 }
 
 .font-power {
-  font-family: var(--font-lilita), system-ui;
+  font-family: var(--font-power), system-ui;
+  font-weight: 800;
 }
 
 .font-script {

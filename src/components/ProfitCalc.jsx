@@ -3,41 +3,58 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ExpandIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="opacity-40">
+    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const DollarIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-    <circle cx="12" cy="12" r="10"/>
-    <path d="M12 6v12M10 9h4a2 2 0 0 1 0 4h-4a2 2 0 0 0 0 4h4"/>
-  </svg>
+  <div className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center opacity-40">
+    <span className="text-[10px] font-bold">$</span>
+  </div>
 );
 
-const ShirtOutline = ({ type }) => {
+const ItemOutline = ({ type }) => {
   if (type === "T-Shirt") return (
-     <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M25 30 L35 25 L42 25 Q50 35 58 25 L65 25 L75 30 L80 50 L72 52 L68 45 L68 85 L32 85 L32 45 L28 52 L20 50 Z" />
-        <path d="M35 25 Q50 35 65 25" />
-        <path d="M32 45 L28 42 M68 45 L72 42" />
+     <svg viewBox="0 0 100 120" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1.2">
+        <path d="M25 40 L35 32 L42 32 C50 42 58 32 65 32 L75 32 L85 40 L80 65 L72 67 L68 55 L68 110 L32 110 L32 55 L28 67 L20 65 Z" />
+        <path d="M35 32 Q50 42 65 32" opacity="0.4" />
      </svg>
   );
   if (type === "Sweatshirt") return (
-     <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M28 30 L38 25 L45 25 Q50 32 55 25 L62 25 L72 30 L85 60 L78 62 L70 45 L68 85 L32 85 L30 45 L22 62 L15 60 Z" />
-        <path d="M38 25 Q50 32 62 25" />
+     <svg viewBox="0 0 100 120" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1.2">
+        <path d="M25 45 L35 35 L42 35 C50 45 58 35 65 35 L75 35 L85 45 L80 95 L72 97 L70 55 L68 110 L32 110 L30 55 L28 97 L20 95 Z" />
+        <path d="M35 35 Q50 45 65 35" opacity="0.4" />
+        <path d="M70 55 L80 95 M30 55 L20 95" opacity="0.4" />
      </svg>
   );
   // Hoodie
   return (
-     <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M28 35 L38 30 L45 30 Q50 37 55 30 L62 30 L72 35 L85 65 L78 67 L70 50 L68 85 L32 85 L30 50 L22 67 L15 65 Z" />
-        <path d="M38 30 Q50 37 62 30" />
-        <path d="M38 30 C38 15, 45 10, 50 10 C55 10, 62 15, 62 30" />
-        <path d="M50 10 L50 35" />
-        <path d="M38 25 L62 25" />
+     <svg viewBox="0 0 100 120" className="w-full h-full" fill="none" stroke="#e8dbcc" strokeWidth="1.2">
+        <path d="M25 50 L35 40 L42 40 C50 50 58 40 65 40 L75 40 L85 50 L80 100 L72 102 L70 60 L68 110 L32 110 L30 60 L28 102 L20 100 Z" />
+        <path d="M35 40 Q50 50 65 40" opacity="0.4" />
+        <path d="M35 40 C35 20, 45 15, 50 15 C55 15, 65 20, 65 40" />
+        <path d="M42 40 L50 25 L58 40" opacity="0.6" />
+        <path d="M40 90 L60 90 L60 105 L40 105 Z" opacity="0.4" />
      </svg>
+  );
+};
+
+const MagnetGrid = ({ count }) => {
+  const cols = count > 500 ? 24 : count > 200 ? 16 : 12;
+  
+  return (
+    <div 
+      className="grid gap-[2px] opacity-40 px-4" 
+      style={{ 
+        gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+        width: count > 300 ? '280px' : '200px'
+      }}
+    >
+      {[...Array(count)].map((_, i) => (
+        <div key={i} className="aspect-square border-[0.5px] border-[#e8dbcc]" />
+      ))}
+    </div>
   );
 };
 
@@ -45,239 +62,134 @@ export default function ProfitCalc() {
   const [activeTab, setActiveTab] = useState("T-Shirt");
 
   const data = {
-    "T-Shirt": { quantity: 1, profit: "28", magnetQuantity: 167, magnetProfit: "1,503", increase: "+5,268%" },
-    "Sweatshirt": { quantity: 1, profit: "35", magnetQuantity: 240, magnetProfit: "2,160", increase: "+6,070%" },
-    "Hoodie": { quantity: 1, profit: "45", magnetQuantity: 310, magnetProfit: "2,790", increase: "+6,100%" }
+    "T-Shirt": { quantity: 1, profit: "28", magnetQuantity: 167, magnetProfit: "1,503", increase: "+5,268%", color: "accent-pink" },
+    "Sweatshirt": { quantity: 1, profit: "39", magnetQuantity: 333, magnetProfit: "2,997", increase: "+7,585%", color: "accent-yellow" },
+    "Hoodie": { quantity: 1, profit: "52", magnetQuantity: 647, magnetProfit: "5,823", increase: "+11,104%", color: "accent-green" }
   };
 
   const current = data[activeTab];
 
   return (
-    <section className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)]">
+    <section className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)] py-20 overflow-hidden">
       
-      {/* Top central colored vertical lines connecting from TouringReality */}
-      <div className="w-full flex justify-center h-20 border-b border-[var(--grid-line-strong)] relative z-10">
-         <div className="h-full w-[48px] flex">
-           <div className="flex-1 bg-accent-pink" />
-           <div className="flex-1 bg-accent-yellow" />
-           <div className="flex-1 bg-accent-green" />
-           <div className="flex-1 bg-accent-cyan" />
+      {/* 1. Module ID Row */}
+      <div className="flex items-center gap-8 px-12 mb-12">
+         <div className="flex gap-4">
+            <ExpandIcon />
+            <DollarIcon />
+         </div>
+         <span className="font-mono text-xs tracking-[0.4em] text-white/40 font-bold uppercase">ML — 003</span>
+      </div>
+
+      {/* 2. Main Heading and Subtitle */}
+      <div className="px-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
+         <h2 className="text-6xl md:text-[100px] font-power leading-[0.85] tracking-tight uppercase text-[#F5F5F3]">
+           PROFIT<br />DENSITY<br />CALCULATOR
+         </h2>
+
+         <div className="max-w-[420px] pb-4">
+            <span className="font-script text-white text-[42px] block mb-2 transform -rotate-3">
+               Space vs. Profit
+            </span>
+            <p className="text-xl md:text-2xl text-white leading-relaxed">
+               <span className="font-serif italic text-accent-green">See how much</span> more you could be <span className="font-unique uppercase text-accent-pink neon-pink">making</span> compared to traditional merch items.<span className="text-accent-yellow font-script text-3xl">*</span>
+            </p>
          </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="w-full max-w-[1400px] mx-auto relative z-10 border-x border-[var(--grid-line-strong)] border-b border-[var(--grid-line-strong)] pb-12 mb-12">
+      {/* 3. Navigation Tabs */}
+      <div className="grid grid-cols-1 md:grid-cols-3 border-y border-[var(--grid-line-strong)]">
+         {Object.keys(data).map((item) => (
+           <button
+             key={item}
+             onClick={() => setActiveTab(item)}
+             className={`relative p-10 md:p-14 flex items-center justify-center gap-6 transition-all border-b md:border-b-0 md:border-r border-[var(--grid-line-strong)] group ${activeTab === item ? 'bg-[#1c141a]/30' : 'bg-transparent hover:bg-white/[0.01]'}`}
+           >
+             {activeTab === item && (
+               <div className="absolute top-0 left-0 w-full h-1.5 flex">
+                  <div className="flex-1 bg-accent-pink" />
+                  <div className="flex-1 bg-accent-yellow" />
+                  <div className="flex-1 bg-accent-green" />
+                  <div className="flex-1 bg-accent-cyan" />
+               </div>
+             )}
+             <ItemOutline type={item} />
+             <span className={`font-mono text-[10px] md:text-xs font-black uppercase tracking-[0.3em] ${activeTab === item ? 'text-white' : 'text-white/30'}`}>
+                Per {item}
+             </span>
+           </button>
+         ))}
+      </div>
+
+      {/* 4. Comparison Body */}
+      <div className="relative grid grid-cols-1 md:grid-cols-2 min-h-[700px]">
          
-         {/* Internal Grid Lines (matching problem section) */}
-         <div className="absolute left-[25%] top-0 bottom-0 w-[1px] bg-[var(--grid-line-strong)] z-0 hidden lg:block" />
-         <div className="absolute left-[50%] top-0 bottom-0 w-[1px] bg-[var(--grid-line-strong)] z-0 hidden lg:block" />
-         <div className="absolute left-[75%] top-0 bottom-0 w-[1px] bg-[var(--grid-line-strong)] z-0 hidden lg:block" />
-
-         {/* Title Section */}
-         <div className="p-12 md:p-24 lg:pb-16 flex flex-col xl:flex-row xl:items-end justify-between border-b border-[var(--grid-line-strong)] relative z-10 bg-[#120D14]">
-            
-            <div className="relative z-10">
-               <div className="flex items-center gap-4 mb-10 text-[#7a7c86]">
-                 <ExpandIcon />
-                 <DollarIcon />
-                 <span className="font-mono text-xs tracking-[0.2em] font-medium ml-4">ML — 003</span>
-               </div>
-               
-               <h2 
-                 className="text-6xl sm:text-7xl md:text-[100px] leading-[0.85] tracking-[-0.03em] uppercase text-[#e8dbcc]"
-                 style={{ fontFamily: "'Arial Black', Impact, sans-serif" }}
-               >
-                 PROFIT<br />DENSITY<br />CALCULATOR
-               </h2>
-            </div>
-
-            <div className="relative z-10 mt-16 xl:mt-0 max-w-[360px] pb-4">
-               <p className="font-script text-accent-green text-[42px] mb-4 transform -rotate-3" style={{ fontFamily: 'Caveat, cursive, auto' }}>
-                 SPACE VS PROFIT
-               </p>
-               <p className="text-[#e8dbcc]/90 font-bold leading-[1.6] text-[15px] lg:text-base tracking-[0.02em]" style={{ fontFamily: "Arial, sans-serif" }}>
-                 See how much more you could be making compared to traditional merch items.<span className="text-accent-yellow">*</span>
-               </p>
-            </div>
+         {/* Vertical Split Line */}
+         <div className="hidden md:block absolute left-1/2 top-10 bottom-10 w-[1px] border-l border-dashed border-white/10 z-0" />
+         <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 bg-[#120D14] items-center justify-center z-10 font-mono text-[10px] font-black uppercase text-white/40">
+            vs
          </div>
 
-         {/* Tabs Section */}
-         <div className="grid grid-cols-1 md:grid-cols-3 border-b border-[var(--grid-line-strong)] relative z-10 bg-[#120D14]">
-            {Object.keys(data).map((item) => (
-              <button
-                key={item}
-                onClick={() => setActiveTab(item)}
-                className={`relative p-8 md:p-12 flex items-center justify-center gap-6 transition-all border-b md:border-b-0 md:border-r border-[var(--grid-line-strong)] hover:bg-white/[0.02] ${item === 'Hoodie' ? 'border-r-0' : ''}`}
-                style={{ backgroundColor: activeTab === item ? '#120D14' : '#1c141a' }}
-              >
-                {activeTab === item && (
-                  <div className="absolute top-[-1px] left-0 w-full h-1.5 grid grid-cols-4 bg-[var(--grid-line-strong)] gap-[1px]">
-                     <div className="bg-accent-pink h-full" />
-                     <div className="bg-accent-yellow h-full" />
-                     <div className="bg-accent-green h-full" />
-                     <div className="bg-accent-cyan h-full" />
-                  </div>
-                )}
-                <div className="w-10 h-10 opacity-70">
-                  <ShirtOutline type={item} />
-                </div>
-                <span className={`text-xs font-black uppercase tracking-[0.15em] ${activeTab === item ? "text-[#e8dbcc]" : "text-[#e8dbcc]/40"}`} style={{ fontFamily: "'Arial Black', sans-serif" }}>
-                  PER {item.toUpperCase()}
-                </span>
-              </button>
-            ))}
-         </div>
-
-         {/* VS Comparison Area */}
-         <div className="relative w-full flex flex-col md:flex-row bg-[#120D14] z-10 border-b border-[var(--grid-line-strong)]">
+         {/* Left: Traditional Item */}
+         <div className="p-12 md:p-20 flex flex-col items-center justify-between border-b md:border-b-0 border-[var(--grid-line-strong)]">
+            <h3 className="text-5xl md:text-7xl font-power italic text-[#F5F5F3] opacity-90 mb-16">{activeTab}</h3>
             
-            {/* Center Dashed Line */}
-            <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] border-l border-dashed border-[#e8dbcc]/30 z-0" />
-            
-            {/* VS Badge */}
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-[var(--grid-line-strong)] bg-[#120D14] items-center justify-center z-10">
-               <span className="font-black text-[#e8dbcc]/70 text-[10px]" style={{fontFamily:"Arial Black"}}>VS</span>
-            </div>
-            
-            {/* Left Box (Traditional) */}
-            <div className="flex-1 p-10 lg:p-20 flex flex-col items-center justify-between min-h-[650px] relative z-0">
+            <div className="w-full max-w-[280px] h-64 flex items-center justify-center mb-16">
                <AnimatePresence mode="wait">
-                 <motion.h3 
-                   key={`title-${activeTab}`}
-                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                   className="text-5xl lg:text-[64px] text-[#e8dbcc] mb-16"
-                   style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, letterSpacing: "-0.02em" }}
-                 >
-                   {activeTab}
-                 </motion.h3>
+                 <motion.div key={activeTab} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-full h-full">
+                    <ItemOutline type={activeTab} />
+                 </motion.div>
                </AnimatePresence>
-               
-               <div className="flex-1 w-full max-w-[280px] mb-20 flex items-center justify-center opacity-60">
-                 <AnimatePresence mode="wait">
-                   <motion.div key={`img-${activeTab}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-full h-full">
-                     <ShirtOutline type={activeTab} />
-                   </motion.div>
-                 </AnimatePresence>
-               </div>
-
-               {/* Quantity & Profit Stats */}
-               <div className="w-full flex justify-between gap-6 max-w-[360px] mt-auto">
-                  <div className="flex-1 border border-[var(--grid-line-strong)] flex flex-col bg-transparent">
-                     <div className="px-4 py-1.5 border-b border-[var(--grid-line-strong)] bg-[#120D14]">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#e8dbcc]" style={{fontFamily:'Arial Black'}}>QUANTITY</span>
-                     </div>
-                     <div className="p-8 flex items-center justify-center">
-                        <span className="text-4xl lg:text-5xl text-[#e8dbcc]/90" style={{fontFamily: "Arial, sans-serif"}}>{current.quantity}</span>
-                     </div>
-                  </div>
-                  
-                  <div className="flex-[1.2] border border-[var(--grid-line-strong)] flex flex-col bg-transparent">
-                     <div className="px-4 py-1.5 border-b border-[var(--grid-line-strong)] bg-[#120D14]">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#e8dbcc]" style={{fontFamily:'Arial Black'}}>PROFIT</span>
-                     </div>
-                     <div className="p-8 flex items-center justify-center">
-                        <AnimatePresence mode="wait">
-                          <motion.span 
-                            key={`profit-${activeTab}`} 
-                            initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:10 }}
-                            className="text-4xl lg:text-[42px] text-accent-pink tracking-tight" 
-                            style={{fontFamily: "Arial, sans-serif", fontWeight: 300}}
-                          >
-                            ${current.profit}
-                          </motion.span>
-                        </AnimatePresence>
-                     </div>
-                  </div>
-               </div>
             </div>
 
-            {/* Right Box (Magnets) */}
-            <div className="flex-1 p-10 lg:p-20 flex flex-col items-center justify-between min-h-[650px] relative z-0">
-               <h3 className="text-5xl lg:text-[64px] text-[#e8dbcc] mb-16" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, letterSpacing: "-0.02em" }}>
-                 Magnets
-               </h3>
-               
-               <div className="flex-1 w-full max-w-[200px] mb-20 flex items-center justify-center opacity-60">
-                 {/* Magnet grid visual */}
-                 <div className="w-full grid grid-cols-10 gap-1 mt-auto" style={{ aspectRatio: '4/4' }}>
-                   {[...Array(68)].map((_, i) => (
-                      <div key={i} className="border border-[#e8dbcc]/40 bg-transparent w-full h-full aspect-square" />
-                   ))}
-                 </div>
+            <div className="w-full grid grid-cols-2 gap-4 max-w-[440px]">
+               <div className="border border-white/10 bg-black/20">
+                  <div className="px-4 py-2 border-b border-white/10 font-mono text-[9px] font-black uppercase tracking-[0.2em] text-white/40 bg-white/[0.02]">Quantity</div>
+                  <div className="p-8 text-center text-5xl font-mono text-[#F5F5F3]">{current.quantity}</div>
                </div>
-
-               {/* Quantity & Profit Stats */}
-               <div className="w-full flex justify-between gap-6 max-w-[420px] mt-auto">
-                  <div className="flex-1 border border-[var(--grid-line-strong)] flex flex-col bg-transparent">
-                     <div className="px-4 py-1.5 border-b border-[var(--grid-line-strong)] bg-[#120D14]">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#e8dbcc]" style={{fontFamily:'Arial Black'}}>QUANTITY</span>
-                     </div>
-                     <div className="p-8 flex items-center justify-center">
-                        <AnimatePresence mode="wait">
-                          <motion.span 
-                            key={`m-qty-${activeTab}`}
-                            initial={{ opacity:0, scale:0.95 }} animate={{ opacity:1, scale:1 }} exit={{ opacity:0 }}
-                            className="text-4xl lg:text-5xl text-[#e8dbcc]/90" 
-                            style={{fontFamily: "Arial, sans-serif"}}
-                          >
-                            {current.magnetQuantity}
-                          </motion.span>
-                        </AnimatePresence>
-                     </div>
-                  </div>
-                  
-                  <div className="flex-[1.4] border border-[var(--grid-line-strong)] flex flex-col bg-transparent">
-                     <div className="px-2 py-1.5 border-b border-[var(--grid-line-strong)] bg-[#120D14] flex justify-between items-center">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#e8dbcc]" style={{fontFamily:'Arial Black'}}>PROFIT</span>
-                        <AnimatePresence mode="wait">
-                          <motion.span 
-                            key={`m-inc-${activeTab}`}
-                            initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }}
-                            className="bg-accent-yellow text-[#120D14] font-black text-[9px] px-1.5 py-0.5 tracking-wider"
-                            style={{fontFamily: "Arial Black"}}
-                          >
-                            {current.increase}
-                          </motion.span>
-                        </AnimatePresence>
-                     </div>
-                     <div className="p-8 flex items-center justify-center">
-                        <AnimatePresence mode="wait">
-                          <motion.span 
-                            key={`m-profit-${activeTab}`} 
-                            initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:10 }}
-                            className="text-4xl lg:text-[42px] text-accent-green tracking-tight" 
-                            style={{fontFamily: "Arial, sans-serif", fontWeight: 300}}
-                          >
-                            ${current.magnetProfit}
-                          </motion.span>
-                        </AnimatePresence>
-                     </div>
-                  </div>
+               <div className="border border-white/10 bg-black/20">
+                  <div className="px-4 py-2 border-b border-white/10 font-mono text-[9px] font-black uppercase tracking-[0.2em] text-white/40 bg-white/[0.02]">Profit</div>
+                  <div className="p-8 text-center text-5xl font-mono text-accent-pink tracking-tighter">${current.profit}</div>
                </div>
-            </div>
-
-         </div>
-
-         {/* Footer text area */}
-         <div className="w-full pt-10 pb-8 flex justify-center relative z-10">
-            {/* Asterisk Badge precisely placed on the bottom line intercept */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 border border-[var(--grid-line-strong)] bg-[#120D14] flex items-center justify-center z-10">
-               <span className="font-black text-accent-yellow text-xs transform mt-0.5">*</span>
-            </div>
-
-            <div className="flex flex-col items-center gap-1.5 text-center text-[#e8dbcc]">
-               <p className="font-bold text-[10px] lg:text-xs tracking-wide" style={{fontFamily: "Arial, sans-serif"}}>
-                 These numbers are averages and are calculated based on actual volumetric measurements.
-               </p>
-               <p className="font-bold text-[10px] lg:text-xs tracking-wide" style={{fontFamily: "Arial, sans-serif"}}>
-                 Magnet values are calculated based on an average selling price of $12.
-               </p>
-               <p className="font-bold text-[10px] lg:text-xs tracking-wide" style={{fontFamily: "Arial, sans-serif"}}>
-                 Limited editions and signed magnets have much higher average profit.
-               </p>
             </div>
          </div>
 
+         {/* Right: Magnets */}
+         <div className="p-12 md:p-20 flex flex-col items-center justify-between">
+            <h3 className="text-5xl md:text-7xl font-power italic text-[#F5F5F3] opacity-90 mb-16">Magnets</h3>
+            
+            <div className="flex-1 flex items-center justify-center mb-16 px-4">
+               <AnimatePresence mode="wait">
+                 <motion.div key={activeTab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    <MagnetGrid count={current.magnetQuantity} />
+                 </motion.div>
+               </AnimatePresence>
+            </div>
+
+            <div className="w-full grid grid-cols-2 gap-4 max-w-[440px]">
+               <div className="border border-white/10 bg-black/20">
+                  <div className="px-4 py-2 border-b border-white/10 font-mono text-[9px] font-black uppercase tracking-[0.2em] text-white/40 bg-white/[0.02]">Quantity</div>
+                  <div className="p-8 text-center text-5xl font-mono text-[#F5F5F3]">{current.magnetQuantity}</div>
+               </div>
+               <div className="border border-white/10 bg-black/20 relative">
+                  <div className="px-4 py-2 border-b border-white/10 flex justify-between items-center bg-white/[0.02]">
+                     <span className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-white/40">Profit</span>
+                     <span className="bg-accent-yellow text-black font-mono text-[8.5px] font-black px-1.5 py-0.5 tracking-tighter">{current.increase}</span>
+                  </div>
+                  <div className="p-8 text-center text-5xl font-mono text-accent-green tracking-tighter">${current.magnetProfit}</div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      {/* 5. Disclaimer Column */}
+      <div className="mt-20 flex flex-col items-center gap-2 opacity-30 px-12 text-center relative">
+         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[calc(50%+40px)] w-5 h-5 border border-white/20 bg-[#120D14] flex items-center justify-center">
+            <span className="text-accent-yellow font-black text-xs">*</span>
+         </div>
+         <p className="font-medium text-[10px] md:text-xs text-[#e8dbcc] tracking-wide">These numbers are averages and are calculated based on actual volumetric measurements.</p>
+         <p className="font-medium text-[10px] md:text-xs text-[#e8dbcc] tracking-wide">Magnet values are calculated based on an average selling price of $12.</p>
+         <p className="font-medium text-[10px] md:text-xs text-[#e8dbcc] tracking-wide">Limited editions and signed magnets have much higher average profit.</p>
       </div>
 
     </section>

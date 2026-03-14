@@ -30,24 +30,22 @@ export default function ProblemSection() {
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-7xl sm:text-9xl md:text-[160px] leading-[0.8] tracking-[-0.03em] uppercase text-center text-[#e8dbcc]"
-            style={{ fontFamily: "'Arial Black', Impact, sans-serif", letterSpacing: "-0.02em" }}
+            className="text-7xl sm:text-9xl md:text-[160px] leading-[0.8] tracking-[-0.05em] uppercase text-center text-[#e8dbcc] font-power"
           >
             WHY<br />MAGNETS?
           </motion.h2>
 
           <div className="mt-20 mb-16 border border-[var(--grid-line-strong)] px-10 py-4 bg-transparent">
-             <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.2em] font-bold text-[#e8dbcc]">THE SITUATION</p>
+             <p className="font-mono text-[11px] md:text-xs uppercase tracking-[0.3em] font-bold text-[#e8dbcc]">THE SITUATION</p>
           </div>
 
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl md:text-5xl font-normal text-[#e8dbcc]/90 leading-[1.3] max-w-6xl text-center px-4"
-            style={{ fontFamily: "Arial, sans-serif", letterSpacing: "0.02em" }}
+            className="text-2xl md:text-5xl text-white leading-[1.3] max-w-6xl text-center px-4"
           >
-            Modern musicians, artists and festivals need merch that maximises their monetary potential, and fans want something of substance that lasts.
+            <span className="font-serif italic text-accent-cyan">Modern</span> musicians, designers and festivals need merch that <span className="font-unique uppercase text-accent-yellow tracking-tighter">maximises</span> their monetary potential, and fans want something of <span className="font-script text-white inline-block transform rotate-2">substance</span> that lasts.
           </motion.p>
         </div>
 
@@ -67,8 +65,7 @@ export default function ProblemSection() {
              <motion.h3 
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-center relative z-10 w-full"
-               style={{ fontFamily: "'Arial Black', Impact, sans-serif", letterSpacing: "-0.01em", color: "#e8dbcc", lineHeight: 1.2 }}
+               className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-center relative z-10 w-full font-power uppercase tracking-tight text-[#e8dbcc] leading-tight"
              >
                But, only 20% of people buy merch at live shows
              </motion.h3>
@@ -79,11 +76,11 @@ export default function ProblemSection() {
       {/* Narrative Paragraphs below highlight */}
       <div className="w-full relative z-10 px-6 max-w-[1400px] mx-auto">
         <div className="flex flex-col items-center pt-24 pb-32">
-          <p className="text-2xl md:text-[34px] font-light text-[#e8dbcc]/90 leading-[1.4] max-w-4xl text-center mb-10" style={{ fontFamily: "Arial, sans-serif", letterSpacing: "0.01em" }}>
-            Traditional items like tees and hoodies are bulky, pricey and easy to pass over, while cheaper options end up forgotten in a drawer.
+          <p className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center mb-10">
+            <span className="font-serif italic text-accent-pink">Traditional</span> items like tees and hoodies are <span className="font-unique uppercase text-accent-yellow">bulky</span>, pricey and easy to pass over, while cheaper options end up <span className="font-script text-white inline-block transform -rotate-2">forgotten in a drawer.</span>
           </p>
-          <p className="text-2xl md:text-[34px] font-light text-[#e8dbcc]/90 leading-[1.4] max-w-4xl text-center" style={{ fontFamily: "Arial, sans-serif", letterSpacing: "0.01em" }}>
-            Magnets are affordable, memorable and a daily reminder of the show, all while taking up less space and delivering better margins for artists.
+          <p className="text-2xl md:text-4xl text-white leading-[1.4] max-w-4xl text-center">
+            Magnets are <span className="font-unique uppercase text-accent-green neon-green">affordable</span>, memorable and a <span className="font-serif italic text-white underline decoration-accent-cyan underline-offset-8">daily reminder</span> of the show, all while taking up less space and delivering <span className="font-script text-accent-pink text-5xl">better margins</span> for artists.
           </p>
         </div>
       </div>

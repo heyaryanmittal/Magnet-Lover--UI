@@ -75,9 +75,13 @@ export default function Hero() {
           MAGNET<br />LOVER
         </h1>
 
-        <p className="mt-12 text-[10px] md:text-xs font-mono uppercase tracking-[0.7em] text-white/30 z-20 font-medium">
-          Merch that makes more sense
-        </p>
+        <div className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 z-20 max-w-xl">
+           <span className="text-3xl md:text-5xl font-script text-white transform -rotate-3">Merch</span>
+           <span className="text-2xl md:text-4xl font-serif italic text-accent-pink px-2">that</span>
+           <span className="text-4xl md:text-6xl font-unique uppercase text-accent-yellow tracking-tighter">makes</span>
+           <span className="text-2xl md:text-5xl font-script text-white transform rotate-2">more</span>
+           <span className="text-4xl md:text-6xl font-power text-accent-cyan tracking-tight">SENSE</span>
+        </div>
 
         {/* Magnets */}
         <Magnet src="/magnets/vinyl_v2.png" alt="Vinyl" initialX="15%" initialY="20%" size={250} rotation={-14} />

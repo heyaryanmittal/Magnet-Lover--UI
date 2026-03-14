@@ -79,6 +79,12 @@ export default function StatBar() {
     }
   ];
 
+  const [waveHeights, setWaveHeights] = React.useState([]);
+
+  React.useEffect(() => {
+     setWaveHeights([...Array(24)].map(() => Math.random() * 60 + 20));
+  }, []);
+
   return (
     <div className="relative w-full flex flex-col items-center bg-transparent mt-8">
       
@@ -182,8 +188,8 @@ export default function StatBar() {
             {[...Array(24)].map((_, i) => (
                <div 
                  key={i} 
-                 className="w-[1px] bg-white rounded-full bg-white/70" 
-                 style={{ height: `${Math.random() * 60 + 20}%` }} 
+                 className="w-[1px] bg-white rounded-full bg-white/70 transition-all duration-500" 
+                 style={{ height: waveHeights[i] ? `${waveHeights[i]}%` : '40%' }} 
                />
             ))}
          </div>

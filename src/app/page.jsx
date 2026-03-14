@@ -7,6 +7,9 @@ import TouringReality from "@/components/TouringReality";
 import ProfitCalc from "@/components/ProfitCalc";
 import Benefits from "@/components/Benefits";
 import Mission from "@/components/Mission";
+import TeamSection from "@/components/TeamSection";
+import BigMarquee from "@/components/BigMarquee";
+import TrustSection from "@/components/TrustSection";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
@@ -24,10 +27,13 @@ export default function Home() {
           <ProblemSection />
           <Benefits />
           <TouringReality />
+          <ProfitCalc />
           
           <Mission />
+          <BigMarquee />
+          <TrustSection />
           <ContactForm />
-          
+          <TeamSection />
           <Footer />
         </div>
 
