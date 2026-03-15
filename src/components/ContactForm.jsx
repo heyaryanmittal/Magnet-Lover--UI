@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function ContactForm() {
   return (
-    <section className="relative py-32 px-4 border-b border-white/10 bg-transparent">
+    <section id="contact" className="relative py-32 px-4 border-b border-white/10 bg-transparent">
       
       <motion.div 
         initial={{ opacity: 0, y: 50 }}

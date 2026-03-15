@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #f5f5f5;
-  --grid-line: rgba(255, 255, 255, 0.05); /* Fainter, sharper grid */
-  --grid-line-strong: rgba(255, 255, 255, 0.15); /* Stronger edges */
-  --text-warm: #EDE8E0; /* Warm off-white from image */
+  --grid-line: rgba(255, 255, 255, 0.08); 
+  --grid-line-strong: #473B4D; /* Dusty purple solid line from image */
+  --text-warm: #EDE8E0; 
   --accent-pink: #ff4b82;
   --accent-yellow: #ffc300;
   --accent-green: #00b167;
@@ -58,25 +56,23 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Structural Grid - Exactly like the site */
+/* Structural Grid - Dotted as per image */
 .main-grid {
   display: grid;
   grid-template-columns: 1fr minmax(0, 1200px) 1fr;
   width: 100%;
   min-height: 100vh;
   background-image: 
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 25px 25px; /* Reduced for smaller boxes */
+    radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 30px 30px; 
 }
 
 .content-col {
   grid-column: 2;
-  border-left: 1px solid var(--grid-line-strong);
-  border-right: 1px solid var(--grid-line-strong);
+  border-left: 2px solid var(--grid-line-strong);
+  border-right: 2px solid var(--grid-line-strong);
   position: relative;
-  background-color: #120D14; /* User requested color */
-  background-image: none;
+  background-color: #120D14;
 }
 
 .side-col {

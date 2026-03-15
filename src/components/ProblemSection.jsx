@@ -4,7 +4,7 @@ import Magnet from "./ui/Magnet";
 
 export default function ProblemSection() {
   return (
-    <section className="relative w-full bg-transparent border-b border-[var(--grid-line-strong)]">
+    <section id="why-magnets" className="relative w-full bg-transparent border-b border-[var(--grid-line-strong)]">
       
       {/* Central Vertical Splitting Lines (3 lines creating 4 columns) - Animates on scroll */}
       <motion.div 

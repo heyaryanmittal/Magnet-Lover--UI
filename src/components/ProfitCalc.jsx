@@ -70,7 +70,7 @@ export default function ProfitCalc() {
   const current = data[activeTab];
 
   return (
-    <section className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)] py-20 overflow-hidden">
+    <section id="calculator" className="relative w-full bg-[#120D14] border-b border-[var(--grid-line-strong)] py-20 overflow-hidden">
       
       {/* 1. Module ID Row */}
       <div className="flex items-center gap-8 px-12 mb-12">
