@@ -12,6 +12,7 @@ import BigMarquee from "@/components/BigMarquee";
 import TrustSection from "@/components/TrustSection";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import MagnetBoard from "@/components/MagnetBoard";
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
           <ContactForm />
           <TeamSection />
           <Footer />
+          <MagnetBoard />
         </div>
 
         <div className="side-col hidden lg:block" />

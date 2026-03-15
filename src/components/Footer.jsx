@@ -204,10 +204,7 @@ export default function Footer() {
       <div className="w-full grid grid-cols-1 md:grid-cols-3 h-20 md:h-24 px-6 md:px-12 items-center">
          {/* Left: ML Logo */}
          <div className="flex items-center gap-3">
-            <svg viewBox="0 0 100 100" className="w-6 h-6">
-              <path d="M50 85 C30 70 10 50 10 30 C10 15 25 10 40 20 C45 25 50 30 50 30 C50 30 55 25 60 20 C75 10 90 15 90 30 C90 50 70 70 50 85" fill="#ff4b82" />
-              <path d="M32 35 V42 C32 52 40 60 50 60 C60 60 68 52 68 42 V35 H62 V42 C62 48 56 54 50 54 C44 54 38 48 38 42 V35 H32" fill="white" />
-            </svg>
+            <span className="font-power text-2xl tracking-tighter text-accent-pink pr-2 border-r border-white/20">ML</span>
             <span className="font-power text-lg uppercase tracking-tight text-white/90">Magnet Lover</span>
          </div>
 

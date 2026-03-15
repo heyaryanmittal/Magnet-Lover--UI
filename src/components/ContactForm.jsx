@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import Magnet from "./ui/Magnet";
 
 export default function ContactForm() {
   return (
@@ -59,22 +58,6 @@ export default function ContactForm() {
           </button>
         </form>
 
-        <Magnet 
-          src="/magnets/vinyl_v2.png" 
-          alt="Contact Vinyl" 
-          initialX="-10%" 
-          initialY="10%" 
-          size={160} 
-          rotation={-20} 
-        />
-        <Magnet 
-          src="/magnets/patch_v2.png" 
-          alt="Contact Patch" 
-          initialX="95%" 
-          initialY="70%" 
-          size={180} 
-          rotation={15} 
-        />
       </motion.div>
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Heart, Mail, Globe } from "lucide-react";
-import Magnet from "./ui/Magnet";
+import { Mail } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -10,12 +9,9 @@ export default function Hero() {
       {/* 1. Header Row - More compact */}
       <div className="relative border-b border-[var(--grid-line-strong)] h-16 md:h-24">
         <header className="flex h-full items-stretch">
-          {/* Logo Box */}
+          {/* Logo Box - Heart Removed */}
           <div className="w-20 md:w-32 border-r border-[var(--grid-line-strong)] flex items-center justify-center cursor-pointer hover:bg-white/[0.02] transition-colors overflow-hidden">
-            <svg viewBox="0 0 100 100" className="w-8 h-8 md:w-12 md:h-12">
-              <path d="M50 85 C30 70 10 50 10 30 C10 15 25 10 40 20 C45 25 50 30 50 30 C50 30 55 25 60 20 C75 10 90 15 90 30 C90 50 70 70 50 85" fill="#ff4b82" />
-              <path d="M32 35 V42 C32 52 40 60 50 60 C60 60 68 52 68 42 V35 H62 V42 C62 48 56 54 50 54 C44 54 38 48 38 42 V35 H32" fill="white" />
-            </svg>
+            <span className="font-power text-2xl tracking-tighter text-accent-pink">ML</span>
           </div>
           
           {/* Main Nav */}
@@ -56,29 +52,6 @@ export default function Hero() {
 
       {/* 3. Hero Body Content */}
       <div className="py-24 md:py-32 flex flex-col items-center justify-center relative">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4 }}
-          viewport={{ once: true, amount: 0.15 }}
-          className="border border-white/20 rounded-full pr-8 py-1.5 flex items-center gap-4 bg-[#0a0a0a]/60 backdrop-blur-xl mb-8 z-20 overflow-hidden"
-        >
-          <div className="w-14 h-14 bg-black border-r border-white/10 flex items-center justify-center relative group">
-             {/* Rotating Nebula CD */}
-             <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-900 via-indigo-900 to-black relative overflow-hidden flex items-center justify-center p-2 shadow-[0_0_15px_rgba(100,100,255,0.3)]"
-             >
-                <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-center" />
-                <div className="w-full h-full rounded-full border border-white/20 relative">
-                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-black border border-white/20" />
-                </div>
-             </motion.div>
-          </div>
-          <span className="text-[10px] md:text-[11px] font-mono uppercase tracking-[0.4em] text-white/70 font-bold">Music Industry Merch</span>
-        </motion.div>
-
         <motion.h1 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,35 +60,6 @@ export default function Hero() {
         >
           MAGNET<br />LOVER
         </motion.h1>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.6, delay: 0.8 }}
-          className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 z-20 max-w-xl"
-        >
-           {[
-             { text: "Merch", class: "text-3xl md:text-5xl font-script text-white transform -rotate-3" },
-             { text: "that", class: "text-2xl md:text-4xl font-serif italic text-accent-pink px-2" },
-             { text: "makes", class: "text-4xl md:text-6xl font-unique uppercase text-accent-yellow tracking-tighter" },
-             { text: "more", class: "text-2xl md:text-5xl font-script text-white transform rotate-2" },
-             { text: "SENSE", class: "text-4xl md:text-6xl font-power text-accent-cyan tracking-tight" }
-           ].map((word, i) => (
-             <motion.span 
-               key={i}
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 1.0, delay: 1 + (i * 0.1), ease: "circOut" }}
-               className={word.class}
-             >
-               {word.text}
-             </motion.span>
-           ))}
-        </motion.div>
-
-        {/* Magnets */}
-        <Magnet src="/magnets/vinyl_v2.png" alt="Vinyl" initialX="15%" initialY="20%" size={250} rotation={-14} />
-        <Magnet src="/magnets/heart_v2.png" alt="Heart" initialX="72%" initialY="15%" size={230} rotation={12} />
       </div>
 
       {/* 4. Separator Line */}

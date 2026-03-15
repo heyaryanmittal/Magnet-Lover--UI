@@ -17,25 +17,15 @@ export default function Mission() {
            We’re on a <span className="font-serif italic text-white normal-case">mission</span> to <span className="font-unique text-accent-yellow">empower</span> artists and events with <span className="text-accent-cyan neon-cyan">more efficient</span> <span className="font-script text-white normal-case text-4xl transform rotate-3 inline-block ml-2">merchandise.</span>
          </motion.h2>
 
-         <div className="text-2xl md:text-4xl text-white leading-relaxed max-w-2xl mx-auto">
-           {[
-             { text: "Because some of our best memories", class: "font-script block mb-4 transform -rotate-2" },
-             { text: "are standing in a crowd", class: "font-serif italic text-accent-pink px-2" },
-             { text: "watching the artists", class: "font-unique uppercase text-accent-green tracking-tighter" },
-             { text: "we love.", class: "font-script text-white text-3xl" }
-           ].map((line, i) => (
-             <motion.span 
-               key={i}
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 1.0, delay: 0.2 + (i * 0.1) }}
-               viewport={{ once: true, amount: 0.15 }}
-               className={`block md:inline ${line.class}`}
-             >
-               {line.text}
-             </motion.span>
-           ))}
-         </div>
+         <motion.div 
+           initial={{ opacity: 0 }}
+           whileInView={{ opacity: 1 }}
+           transition={{ duration: 1.6, delay: 0.2 }}
+           viewport={{ once: true, amount: 0.15 }}
+           className="text-2xl md:text-4xl text-white leading-relaxed max-w-3xl mx-auto font-medium"
+         >
+           Because some of our best memories are formed standing in a crowd, watching the artists we love.
+         </motion.div>
       </div>
     </section>
   );
